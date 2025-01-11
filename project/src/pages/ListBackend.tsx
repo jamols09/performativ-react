@@ -32,10 +32,10 @@ const ListBackend: React.FC = () => {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [searchQuery, setSearchQuery] = useState("");
-	const [sortOrder, setSortOrder] = useState<string>("asc");
-	const [sortOption, setSortOption] = useState<{
-		name: boolean;
-	}>({ name: true });
+	// const [sortOrder, setSortOrder] = useState<string>("asc");
+	// const [sortOption, setSortOption] = useState<{
+	// 	name: boolean;
+	// }>({ name: true });
 	const [list, setList] = useState<ServerResultArray>([]);
 	const [searchResult, setSearchResult] = useState<SearchResultArray>([]);
 
@@ -78,13 +78,16 @@ const ListBackend: React.FC = () => {
 
 	const handleList = async () => {
 		try {
-			const response = await fetch("/api/list", {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Accept: "application/json",
-				},
-			});
+			const response = await fetch(
+				"/api/list?" + new URLSearchParams({ search: searchQuery }).toString(),
+				{
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Accept: "application/json",
+					},
+				}
+			);
 			const data = await response.json();
 			setList(data);
 		} catch (error) {
@@ -193,11 +196,12 @@ const ListBackend: React.FC = () => {
 					type="text"
 					value={searchQuery}
 					onChange={(e) => setSearchQuery(e.target.value)}
+					onKeyUp={handleList}
 					placeholder="Search"
 					className="flex-grow p-2 border border-gray-300 rounded-lg focus:outline-none"
 				/>
 			</div>
-			<div className="flex mb-5">
+			{/* <div className="flex mb-5">
 				<label className="mr-2">
 					<input
 						type="checkbox"
@@ -218,9 +222,9 @@ const ListBackend: React.FC = () => {
 					<option value="asc">Ascending</option>
 					<option value="desc">Descending</option>
 				</select>
-			</div>
+			</div> */}
 			<div className="mt-5">
-				<h2 className="text-xl font-bold mb-3">Search Results:</h2>
+				<h2 className="text-xl font-bold mb-3">API Results:</h2>
 				<div className="max-h-64 overflow-y-auto">
 					<ul>
 						{searchResult.map((result, index) => (

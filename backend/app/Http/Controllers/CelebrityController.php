@@ -53,17 +53,10 @@ class CelebrityController extends Controller
     {
         $query = Celebrity::query();
 
-        // Get sorting parameters from the request
-        $sorts = $request->query('sort', []);
-
-        // Apply sorting to the query
-        foreach ($sorts as $sort) {
-            $direction = 'asc';
-            if (substr($sort, 0, 1) === '-') {
-                $direction = 'desc';
-                $sort = substr($sort, 1);
-            }
-            $query->orderBy($sort, $direction);
+        // Get search parameter from the request
+        if ($request->has('search')) {
+            $search = $request->query('search');
+            $query->where('name', 'like', '%' . $search . '%');
         }
 
         return $query->get();
