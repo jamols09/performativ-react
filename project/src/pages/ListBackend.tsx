@@ -32,10 +32,6 @@ const ListBackend: React.FC = () => {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [searchQuery, setSearchQuery] = useState("");
-	// const [sortOrder, setSortOrder] = useState<string>("asc");
-	// const [sortOption, setSortOption] = useState<{
-	// 	name: boolean;
-	// }>({ name: true });
 	const [list, setList] = useState<ServerResultArray>([]);
 	const [searchResult, setSearchResult] = useState<SearchResultArray>([]);
 
@@ -201,28 +197,7 @@ const ListBackend: React.FC = () => {
 					className="flex-grow p-2 border border-gray-300 rounded-lg focus:outline-none"
 				/>
 			</div>
-			{/* <div className="flex mb-5">
-				<label className="mr-2">
-					<input
-						type="checkbox"
-						checked={sortOption.name}
-						onChange={(e) =>
-							setSortOption({ ...sortOption, name: e.target.checked })
-						}
-						className="mr-1"
-					/>
-					Name
-				</label>
 
-				<select
-					value={sortOrder}
-					onChange={(e) => setSortOrder(e.target.value)}
-					className="p-2 border border-gray-300 rounded-lg focus:outline-none"
-				>
-					<option value="asc">Ascending</option>
-					<option value="desc">Descending</option>
-				</select>
-			</div> */}
 			<div className="mt-5">
 				<h2 className="text-xl font-bold mb-3">API Results:</h2>
 				<div className="max-h-64 overflow-y-auto">
