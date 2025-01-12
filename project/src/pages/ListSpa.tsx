@@ -20,10 +20,6 @@ function ListSpa() {
 	const handleAddTodo = () => {
 		console.log("Item Added");
 		if (newFirstName.trim() !== "" && newLastName.trim() !== "") {
-			console.log(
-				{ firstName: newFirstName, lastName: newLastName },
-				"Item Added"
-			);
 			setTodos([...todos, { firstName: newFirstName, lastName: newLastName }]);
 			setNewFirstName("");
 			setNewLastName("");

@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Celebrity extends Model
 {
+
+    use HasFactory;
+
     protected $fillable = [
         'name',
         'net_worth',
@@ -13,7 +17,7 @@ class Celebrity extends Model
         'nationality',
         'height',
         'birthday',
-        'age',
-        'is_alive'
+        'age', //integer
+        'is_alive' //boolean
     ];
 }

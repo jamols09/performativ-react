@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Http;
 class CelebrityController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Search Celebrity using first name and last name only
      *
      * @param  SearchCelebrityRequest  $request
      * @return \Illuminate\Http\Response
